@@ -97,7 +97,7 @@ const AppTable = ({tableHeader}:any) => {
                 {
                     tableData &&
                     tableData.map((row:any, i)=>
-                        <tr>
+                        <tr key={i}>
                             <td style={{borderBottom:'1px solid #E1E2E9'}}><input className="h-4 w-4" type="checkbox" name="" id="" /></td>
                              {entries.map((item:any, i:any)=>
                                     <td style={{borderBottom:'1px solid #E1E2E9'}} className="py-3 px-5 text-[#6E7079]"  key={i}> {row[item]} </td>

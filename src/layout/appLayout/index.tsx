@@ -37,7 +37,7 @@ const AppLayout = () => {
                 <div className="mt-10">
                     {
                         navOptions.map((item, i)=>
-                            <Link to={item.link}>
+                            <Link to={item.link} key={i}>
                                 <div 
                                 style={{backgroundColor:item.paths.includes(currentPath)? '#3E60FF':''}}
                                 className={`mb-3 flex px-3 rounded-md py-3 font-semibold ${item.paths.includes(currentPath) ? 'text-white':'text-[#53545C]'}`}

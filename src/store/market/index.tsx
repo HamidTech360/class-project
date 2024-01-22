@@ -9,7 +9,7 @@ const marketSlice: StateCreator<any>= (set) => ({
             sales:[]
         }
     ],
-    updateExpenses: (newExpense:any)=>{
+    updateExpenses: ()=>{
         set((state:any)=>{
             const newId = state.markets.lenght - 1
             console.log(newId);
