@@ -1,0 +1,11 @@
+.sideBar{
+    width:300px;
+    max-height:100vh;
+    overflow-y:hidden; 
+    padding-bottom:20px;
+    // border-right:1px solid lightgray;
+    
+    @media screen and (max-width:1000px) and (min-width:768px){
+        width:230px;
+    }
+}
