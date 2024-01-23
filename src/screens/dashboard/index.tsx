@@ -1,17 +1,19 @@
-// import { useMarketWrapper } from "../../store";
+//import { useMarketWrapper } from "../../store";
 import InfoCard from "../../components/infoCard";
 import { PiShoppingBagFill } from "react-icons/pi";
 import { addDelimiterToNumber } from "../../utils";
 import AppTable from "../../components/appTable";
+import FlatList from "../../components/flatList";
 import styles from './dashboard.module.scss'
-import { CiFilter } from "react-icons/ci";
-import { MdDateRange } from "react-icons/md";
+
 
 const Dashboard = () => {
 
-    // const {updateExpenses, markets} = useMarketWrapper((state)=>({
+    // const {setSelectedMarket, selectedMarket} = useMarketWrapper((state)=>({
     //     updateExpenses: state.updateExpenses,
-    //     markets: state.markets
+    //     markets: state.markets,
+    //     selectedMarket: state.selectedMarket,
+    //     setSelectedMarket: state.setSelectedMarket
     // }))
     
 
@@ -23,10 +25,14 @@ const Dashboard = () => {
         
     ]
     
+    // function doS (){
+    //     setSelectedMarket()
+    // }
    
 
     return ( 
         <div>
+            
             <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-x-5 gap-y-3">
                 <InfoCard
                     tagColor="#edf0fe"
@@ -34,7 +40,7 @@ const Dashboard = () => {
                     iconColor="#3E60FF"
                     label="Total Income"
                     value={`₦${addDelimiterToNumber(400000)}`}
-                    percentageValue={2.5}
+                    percentageValue={-5.5}
                 />
                 <InfoCard
                     tagColor="#fef7ed"
@@ -62,24 +68,19 @@ const Dashboard = () => {
                 />
             </div>
 
-            <div className={`h-[500px] overflow-x-scroll py-5 px-5 rounded-md bg-white mt-7 overflow-y-scroll ${styles.tableContainer}`}>
-                <div className="flex py-5 mb-4 border-b">
-                    <div className="text-2xl font-semibold">Recent</div>
-                    <div className="flex-1 flex justify-end">
-                        <div className="w-14 h-7 mr-3 text-sm rounded-md justify-center flex items-center bg-[#F3F3F3]">
-                            <CiFilter className="mr-1" />
-                            Filter
-                        </div>
-                        <div className="w-14 h-7 flex items-center bg-[#F3F3F3] text-sm rounded-md justify-center">
-                            <MdDateRange className="mr-1" />
-                            Date
-                        </div>
-                    </div>
+            <div className="xl:flex ">
+                <div className={`h-[500px] border  xl:mr-5 xl:w-[70%] overflow-x-scroll py-5 px-5 rounded-lg bg-white mt-7 overflow-y-scroll ${styles.tableContainer}`}>  
+                    <AppTable
+                        tableHeader={tableHeader}
+                        tableTitle="Recent"
+                    />
                 </div>
-                <AppTable
-                    tableHeader={tableHeader}
 
-                />
+                <div className="xl:w-[30%] rounded-lg border mt-7">
+                    <FlatList
+                        listTitle="Recent Expenses"
+                    />
+                </div>
             </div>
         </div>
      );

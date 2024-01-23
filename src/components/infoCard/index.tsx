@@ -1,6 +1,6 @@
 const InfoCard = ({tagColor, iconColor, Icon, label, value, percentageValue}:any) => {
     return ( 
-        <div className="bg-white rounded-md h-44 py-3 px-5">
+        <div className="bg-white border rounded-md h-44 py-3 px-5">
            <div className="flex">
                 <div 
                     style={{backgroundColor:tagColor}}

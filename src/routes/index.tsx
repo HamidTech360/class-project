@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import AppLayout from '../layout/appLayout'
 import Dashboard from '../screens/dashboard'
+import Accounts from '../screens/accounts'
 
 
 const AllRoutes = createBrowserRouter([
@@ -16,7 +17,7 @@ const AllRoutes = createBrowserRouter([
       },
       {
         path: 'accounts',
-        element: <h1>Accounts</h1>,
+        element: <Accounts/>,
       },
       {
         path: 'settings',

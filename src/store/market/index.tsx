@@ -1,6 +1,7 @@
 import { StateCreator } from "zustand";
 
 const marketSlice: StateCreator<any>= (set) => ({
+    selectedMarket:null,
     markets:[
         {
             marketId:1,
@@ -9,6 +10,11 @@ const marketSlice: StateCreator<any>= (set) => ({
             sales:[]
         }
     ],
+    setSelectedMarket:()=>{
+        set((state:any)=>{
+            return {selectedMarket:'Latest!!!'}
+        })
+    },
     updateExpenses: ()=>{
         set((state:any)=>{
             const newId = state.markets.lenght - 1
