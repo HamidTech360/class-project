@@ -8,7 +8,7 @@ const FlatList = ({listTitle}:any) => {
       
             <div className='mt-7'>
                 {
-                    [1,1,1,1,1,1,1,1,].map((item)=>
+                    [1,1,1,1,1,1,1,1,].map(()=>
                     <div className="flex mb-7">
                         <div className="max-w-32 font-medium">
                             Electricity Bill

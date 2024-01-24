@@ -18,8 +18,8 @@ const Accounts = () => {
     return ( 
         <div>
             <div className="font-bold text-2xl mb-5">Accounts</div>
-            <div className="flex">
-                <div className="w-[30%] mr-5">
+            <div className="lg:flex">
+                <div className="lg:w-[30%] lg:mr-5">
                     <div className="mb-5">
                     <InfoCard
                         tagColor="#fef7ed"
@@ -31,7 +31,7 @@ const Accounts = () => {
                     />
                     </div>
 
-                    <div>
+                    <div className="mb-5">
                     <InfoCard
                         tagColor="#e5e5e5"
                         Icon={PiShoppingBagFill}
@@ -42,7 +42,7 @@ const Accounts = () => {
                     />
                     </div>
                 </div>
-                <div className="bg-white border rounded-lg w-[70%] h-96">
+                <div className="bg-white border rounded-lg lg:w-[70%] h-96">
 
                 </div>
             </div>

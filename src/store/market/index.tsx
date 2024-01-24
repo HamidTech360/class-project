@@ -11,7 +11,7 @@ const marketSlice: StateCreator<any>= (set) => ({
         }
     ],
     setSelectedMarket:()=>{
-        set((state:any)=>{
+        set(()=>{
             return {selectedMarket:'Latest!!!'}
         })
     },
