@@ -18,8 +18,8 @@ const Accounts = () => {
     ]
 
     const {
-        addExpense,
-        addSale
+        // addExpense,
+        // addSale
     } = useMarketWrapper((state)=>({
         addExpense: state.addExpense,
         addSale: state.addSale
@@ -33,11 +33,11 @@ const Accounts = () => {
     const handleLogItem = ()=>{
 
         
-        const newExpense = {
-            amount, 
-            date,
-            description
-        }
+        // const newExpense = {
+        //     amount, 
+        //     date,
+        //     description
+        // }
         // addExpense()
     }
 
