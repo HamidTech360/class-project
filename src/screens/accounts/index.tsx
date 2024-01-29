@@ -1,4 +1,6 @@
 import InfoCard from "../../components/infoCard";
+import { useMarketWrapper } from "../../store";
+import { useState } from "react";
 import { PiShoppingBagFill } from "react-icons/pi";
 import { addDelimiterToNumber } from "../../utils";
 import FlatList from "../../components/flatList";
@@ -11,9 +13,34 @@ const Accounts = () => {
         {label:'Receipt Id', key:'receiptId'},
         {label:'Issued Date', key:'date'},
         {label:'Amount',  key:'amount'},
-        {label:'Payment Method', key:'paymentMethod'},
+        {label:'Description', key:'description'},
         
     ]
+
+    const {
+        addExpense,
+        addSale
+    } = useMarketWrapper((state)=>({
+        addExpense: state.addExpense,
+        addSale: state.addSale
+    }))
+
+    const [category, setCategory] = useState('')
+    const [amount, setAmount] = useState('')
+    const [date, setDate] = useState('')
+    const [description, setDescription] = useState('')
+
+    const handleLogItem = ()=>{
+
+        
+        const newExpense = {
+            amount, 
+            date,
+            description
+        }
+        // addExpense()
+    }
+
 
     return ( 
         <div>
@@ -42,8 +69,65 @@ const Accounts = () => {
                     />
                     </div>
                 </div>
-                <div className="bg-white border rounded-lg lg:w-[70%] h-96">
 
+                <div className="bg-white border rounded-lg lg:w-[70%] lg:h-96 py-5 px-7">
+                    <div className="text-lg font-semibold mb-5">Add New Expenses</div>
+
+                    <div className="grid lg:grid-cols-2 gap-y-5 gap-x-5">
+                       <div>
+                            <div className="mb-1 font-medium">Entry Category</div>
+                            <select 
+                                className="w-full text-[gray] h-10 outline-none focus:outline-none border border-[#DADADA] rounded-md"
+                                value={category}
+                                onChange={(e)=>setCategory(e.target.value)}
+                            >
+                                <option value="">Select category</option>
+                                <option value="Income">Income</option>
+                                <option value="Expense">Expense</option>
+                            </select>
+                       </div>
+
+                       <div>
+                            <div className="mb-1 font-medium">Amount</div>
+                            <input 
+                                type="number"
+                                value={amount}
+                                onChange={(e)=>setAmount(e.target.value)}
+                                className="h-10 outline-none focus:outline-none border border-[#DADADA] rounded-md w-full"
+                            />
+                       </div>
+
+                       <div>
+                            <div className="mb-1 font-medium">Date</div>
+                            <input 
+                                type="Date"
+                                value={date}
+                                onChange={(e)=>setDate(e.target.value)}
+                                className="h-10 outline-none focus:outline-none border border-[#DADADA] rounded-md w-full"
+                            />
+                       </div>
+
+                       <div>
+                            <div className="mb-1 font-medium">Entry Description</div>
+                            <input 
+                                type="text"
+                                value={description}
+                                onChange={(e)=>setDescription(e.target.value)}
+                                className="h-10 outline-none focus:outline-none border border-[#DADADA] rounded-md w-full"
+                            />
+                       </div>
+
+                    </div>
+
+                    <div className="flex justify-end">
+                    <button
+                        
+                        className="py-3 px-7 bg-[#BEC0CA] text-white rounded-md mt-5 mr-3 text-sm"
+                    >
+                        Cancel
+                    </button>
+                    <button onClick={()=>handleLogItem()} className="py-3 px-5 bg-[#3E60FF] text-white rounded-md mt-5 text-sm">Add Item</button>
+                    </div>
                 </div>
             </div>
 

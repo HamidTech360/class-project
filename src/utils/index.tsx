@@ -6,4 +6,15 @@ export function addDelimiterToNumber(number:number) {
     numberString = numberString.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   
     return numberString;
-  }
+}
+
+export const trimString = (string:string)=>{
+  return string.split(" ").slice(0, 8).join(" ")  
+}
+
+export const formatID  = (id:string)=>{
+  let s__number = `00000${id}#`
+  s__number = s__number.slice(-6)
+
+  return s__number
+}

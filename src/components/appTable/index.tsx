@@ -20,70 +20,70 @@ const AppTable = ({tableHeader, tableTitle}:any) => {
             receiptId:'123456#',
             date:'Janaury, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'December, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'Janaury, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'December, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'Janaury, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'December, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'Janaury, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'December, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'Janaury, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         },
         {
             receiptId:'123456#',
             date:'December, 1998 12:45am',
             amount:45678,
-            paymentMethod:'Card'
+            description:'Card'
             
         }
     ]
