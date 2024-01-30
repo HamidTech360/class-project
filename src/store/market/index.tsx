@@ -1,6 +1,7 @@
 import { StateCreator } from "zustand";
+import { formatID } from "../../utils";
 
-const marketSlice: StateCreator<any>= (set) => ({
+const marketSlice: StateCreator<any>= (set, get) => ({
     selectedMarket:null,
     markets:[
         // {
@@ -36,9 +37,13 @@ const marketSlice: StateCreator<any>= (set) => ({
             
             const currentMarket = state.markets.find((item:any)=>item.marketId == state.selectedMarket.marketId)
             const index =  state.markets.indexOf(currentMarket)
-            console.log(index)
             const markets__c = [...state.markets]
-            markets__c[index].expenses = [expense, ...markets__c[index].expenses ]
+            const newExpense = {
+                receiptId: formatID(markets__c[index].expenses.length + 1),
+                ...expense
+            }
+            console.log(newExpense)
+            markets__c[index].expenses = [newExpense, ...markets__c[index].expenses ]
             return {markets:markets__c}
             
             //{expenses:[{id:newId, ...newExpense}, ...state.expenses]}
@@ -51,14 +56,19 @@ const marketSlice: StateCreator<any>= (set) => ({
             
             const currentMarket = state.markets.find((item:any)=>item.marketId == state.selectedMarket.marketId)
             const index =  state.markets.indexOf(currentMarket)
-            console.log(index)
             const markets__c = [...state.markets]
-            markets__c[index].sales = [sale, ...markets__c[index].sales ]
+            const newSale= {
+                receiptId: formatID(markets__c[index].sales.length + 1),
+                ...sale
+            }
+            console.log(newSale)
+            markets__c[index].sales = [newSale, ...markets__c[index].sales ]
             return {markets:markets__c}
             
             //{expenses:[{id:newId, ...newExpense}, ...state.expenses]}
         })
     }
+
 })
 
 export default marketSlice

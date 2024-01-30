@@ -2,91 +2,14 @@ import { CiFilter } from "react-icons/ci";
 import { MdDateRange } from "react-icons/md";
 
 
-const AppTable = ({tableHeader, tableTitle}:any) => {
+const AppTable = ({tableHeader, tableTitle, tableData}:any) => {
     const entries:any= []
     tableHeader.forEach((element:any) => {
         entries.push(element.key)
     });
 
-    // const tableHeader = [
-    //     {label:'Receipt Id', key:'receiptId'},
-    //     {label:'Issued Date', key:'date'},
-    //     {label:'Amount',  key:'amount'},
-    //     {label:'Payment Method', key:'paymentMethod'},
-        
-    // ]
-    const tableData = [
-        {
-            receiptId:'123456#',
-            date:'Janaury, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'December, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'Janaury, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'December, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'Janaury, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'December, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'Janaury, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'December, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'Janaury, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        },
-        {
-            receiptId:'123456#',
-            date:'December, 1998 12:45am',
-            amount:45678,
-            description:'Card'
-            
-        }
-    ]
+
+    
     return ( 
         <div>
             <div className="flex py-5 mb-4 border-b">
@@ -114,7 +37,7 @@ const AppTable = ({tableHeader, tableTitle}:any) => {
                 <tbody>
                     {
                         tableData &&
-                        tableData.map((row:any, i)=>
+                        tableData.map((row:any, i:any)=>
                             <tr key={i}>
                                 <td style={{borderBottom:'1px solid #E1E2E9'}}><input className="h-4 w-4" type="checkbox" name="" id="" /></td>
                                 {entries.map((item:any, i:any)=>

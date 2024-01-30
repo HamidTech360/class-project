@@ -19,7 +19,7 @@ const InfoCard = ({tagColor, iconColor, Icon, label, value, percentageValue}:any
            <div className="flex">
                 <div className="text-2xl font-semibold">{value}</div>
                 <div className="flex-1 flex justify-end" style={{color: percentageValue < 0 ? '#C3002F':'#519C66'}}>
-                    {percentageValue}%
+                    {percentageValue}{percentageValue && '%'}
                 </div>
            </div>
 
