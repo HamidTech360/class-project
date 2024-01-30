@@ -1,7 +1,7 @@
 import { StateCreator } from "zustand";
 import { formatID } from "../../utils";
 
-const marketSlice: StateCreator<any>= (set, get) => ({
+const marketSlice: StateCreator<any>= (set) => ({
     selectedMarket:null,
     markets:[
         // {
