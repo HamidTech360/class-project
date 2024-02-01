@@ -89,14 +89,14 @@ const Dashboard = () => {
                     <AppTable
                         tableHeader={tableHeader}
                         tableTitle="Recent"
-                        tableData={storeData()?.sales.slice(0, 3)}
+                        tableData={storeData()?.sales?.slice(0, 3) || []}
                     />
                 </div>
 
                 <div className="xl:w-[30%] rounded-lg border mt-7">
                     <FlatList
                         listTitle="Recent Expenses"
-                        data={recentExpenses}
+                        data={recentExpenses || []}
                     />
                 </div>
             </div>
