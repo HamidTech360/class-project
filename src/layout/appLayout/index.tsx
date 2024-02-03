@@ -233,7 +233,7 @@ const AppLayout = () => {
                     </div>
             </Modal>
 
-            <Modal open={isAuthenticated}>
+            <Modal open={!isAuthenticated}>
                 <div className="min-h-72 bg-white rounded-lg w-[35vw] py-10 px-10">
                     <div className="text-2xl text-center font-bold mb-7">Sign In</div>
 
