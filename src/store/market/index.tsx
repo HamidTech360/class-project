@@ -31,6 +31,15 @@ const marketSlice: StateCreator<any>= (set) => ({
             ]}
         })
     },
+    deleteStore: ()=>{
+        set((state:any)=>{
+            
+
+            const filtered = state.markets.filter((item:any)=>item.marketId !== state.selectedMarket.marketId )
+            console.log(filtered)
+            return {markets: filtered}
+        })
+    },
     addExpense: (expense:any)=>{
         
         set((state:any)=>{

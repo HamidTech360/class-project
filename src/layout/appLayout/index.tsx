@@ -9,22 +9,30 @@ import { FaBell } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import Modal from '../../components/modal';
 import { IoMdClose } from "react-icons/io";
+import { CiTrash } from "react-icons/ci";
 import { useMarketWrapper } from '../../store';
 
 const AppLayout = () => {
     const location = useLocation()
     const [openModal, setOpenModal] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [isAuthenticating, setIsAuthenticating] = useState(false)
     const [isAdding, setIsAdding] = useState(false)
+    const [showPromptModal, setShowPromptModal] = useState(false)
+    const [isDeleting, setIsDeleting] = useState(false)
     
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [dateOfEstablishment, setDateOfEstablishment] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
     
-    const {addStore, markets, selectedMarket, setSelectedMarket} = useMarketWrapper((state)=>({
+    const {addStore, markets, selectedMarket, setSelectedMarket, deleteStore} = useMarketWrapper((state)=>({
         addStore: state.addStore,
         markets: state.markets,
         selectedMarket:state.selectedMarket,
-        setSelectedMarket: state.setSelectedMarket
+        setSelectedMarket: state.setSelectedMarket,
+        deleteStore: state.deleteStore
     }))
     
     const currentPath = location.pathname
@@ -57,6 +65,7 @@ const AppLayout = () => {
     }
 
     const handleCreateStore = ()=>{
+        if(!name || !description || !dateOfEstablishment) return alert('No filed should be empty')
         setIsAdding(true)
         const newStore = {
             name,
@@ -67,7 +76,42 @@ const AppLayout = () => {
             addStore(newStore)
             setIsAdding(false)
             setOpenModal(false)
+            alert('Store Created succesfully')
         }, 1500);
+        
+    }
+
+    const handleAuth = ()=>{
+        const details = {
+            username:'admin',
+            password:'admin'
+        }
+
+        if(!username || !password) return alert('Field should not be empty')
+        setIsAuthenticating(true)
+        
+       
+        setTimeout(() => {
+            if(username !== details.username || password !== details.password) {
+                setIsAuthenticating(false)
+                return alert('Invalid Details supplied')
+            }
+            setIsAuthenticating(false)
+            setIsAuthenticated(true)
+        }, 1500);
+        
+    }
+
+    const handleDeletStore = ()=>{
+
+        setIsDeleting(true)
+        setTimeout(() => {
+            deleteStore()
+            setIsDeleting(false)
+            setSelectedMarket(null)
+            setShowPromptModal(false)
+            
+        }, 1500)
         
     }
 
@@ -80,15 +124,27 @@ const AppLayout = () => {
                     {
                         navOptions.map((item, i)=>
                             <Link to={item.link} key={i}>
-                                <div 
-                                style={{backgroundColor:item.paths.includes(currentPath)? '#3E60FF':''}}
-                                className={`mb-3 flex px-3 rounded-md py-3 font-semibold ${item.paths.includes(currentPath) ? 'text-white':'text-[#53545C]'}`}
+                               <div 
+                                    style={{backgroundColor:item.paths.includes(currentPath)? '#3E60FF':''}}
+                                    className={`mb-3 flex px-3 rounded-md py-3 font-semibold ${item.paths.includes(currentPath) ? 'text-white':'text-[#53545C]'}`}
                                 >
                                     <item.icon size={23} />
                                     <span className='ml-3'>{item.label}</span>
                                 </div>
                             </Link>
                         )
+                    }
+                </div>
+
+                <div className="flex-1 flex items-end">
+                    {selectedMarket &&
+                    <div 
+                        onClick={()=>setShowPromptModal(true)}
+                        className="bg-red-100 cursor-pointer py-3 px-7  flex flex-col justify-center items-center rounded-md text-red-500 font-medium"
+                    >
+                        <CiTrash color='red' size={25} className='mb-2' />
+                        Delete This Store 
+                    </div>
                     }
                 </div>
             </div>
@@ -175,6 +231,62 @@ const AppLayout = () => {
                             </button>
                         </div>
                     </div>
+            </Modal>
+
+            <Modal open={isAuthenticated}>
+                <div className="min-h-72 bg-white rounded-lg w-[35vw] py-10 px-10">
+                    <div className="text-2xl text-center font-bold mb-7">Sign In</div>
+
+                    <div className='mb-3'>
+                        <div className="font-semibold mb-1">Username</div>
+                        <input 
+                            type="text" 
+                            className="w-full focus:outline-none px-5 appearance-none h-12 border rounded-md border border-[#DADADA]"
+                            onChange={(e)=>setUsername(e.target.value)}
+                        />
+                    </div>
+
+                    <div className='mb-3'>
+                        <div className="font-semibold mb-1">Password</div>
+                        <input 
+                            type="password" 
+                            className="w-full focus:outline-none px-5 appearance-none h-12 border rounded-md border border-[#DADADA]"
+                            onChange={(e)=>setPassword(e.target.value)}
+                        />
+                    </div>
+
+                    <button
+                        onClick={handleAuth}
+                        style={{opacity: isAuthenticating?'0.5':''}}
+                        className="w-full py-3 bg-[#3E60FF] mt-5 rounded-md text-white"
+                    >
+                        {isAuthenticating? 'Authenticating...':'Login'}
+                    </button>
+                </div>
+            </Modal>
+
+            <Modal open={showPromptModal}>
+                <div className="w-[30vw] rounded-lg bg-white items-center justify-center flex flex-col h-72 px-14 py-5">
+                      <div className="text-red-500 text-center font-semibold">
+                        <CiTrash color='red' size={30} className='mb-5 mx-auto' />
+                        Please Note that this action will delete this current store <span className='font-bold text-lg'> ({selectedMarket?.marketName} STORE) </span>
+                      </div>  
+                      <div className='mt-5'>
+                        <button
+                            onClick={()=>setShowPromptModal(false)}
+                            className="py-3 mr-5 px-7 bg-[#BEC0CA] font-semibold rounded-md mt-5 mr-3 text-sm"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            style={{opacity: isDeleting?'0.5':''}}
+                            onClick={handleDeletStore}
+                            className="py-3 px-7 bg-red-700 text-white font-semibold rounded-md mt-5 mr-3 text-sm"
+                        >
+                            {isDeleting? 'Deleting...':'Proceed'}
+                        </button>
+                      </div>        
+                </div>
             </Modal>
         </div>
      );

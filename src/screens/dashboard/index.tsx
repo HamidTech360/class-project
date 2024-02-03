@@ -35,7 +35,7 @@ const Dashboard = () => {
                          
     }
 
-    const recentExpenses = storeData().expenses?.slice(0,4)
+    const recentExpenses = storeData()?.expenses?.slice(0,4)
 
     const salesTotal = storeData()?.sales?.reduce((a:any, b:any)=>{
         return a + Number(b.amount)
